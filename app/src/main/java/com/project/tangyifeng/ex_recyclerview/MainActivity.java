@@ -1,5 +1,8 @@
 package com.project.tangyifeng.ex_recyclerview;
 
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +19,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.ex_recycler_view)
-    EX_RecyclerView recyclerView;
+    EX_ChatListView<Integer> recyclerView;
 
     private TestAdapter adapter;
     private ArrayList<Integer> testArray;
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialView(){
         recyclerView.setAdapter(adapter);
-        adapter.addData(new ArrayList<Integer>(Arrays.asList(new Integer[]{1, 2, 3})));
+        recyclerView.setBackgroundImageByDrawable(null);
+        recyclerView.setCanFlash(true, R.layout.view_background_layout);
+        for(int i = 0; i < 3; i++)
+            adapter.addData(new ArrayList<Integer>(Arrays.asList(new Integer[]{1, 2, 3})));
     }
 }

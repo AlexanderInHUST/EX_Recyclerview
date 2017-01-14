@@ -10,11 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.project.tangyifeng.ex_recyclerview.MainActivity">
 
-    <com.project.tangyifeng.ex_recyclerview.EX_RecyclerView
+    <com.project.tangyifeng.ex_recyclerview.EX_ChatListView
         android:id="@+id/ex_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.project.tangyifeng.ex_recyclerview.EX_RecyclerView>
+    </com.project.tangyifeng.ex_recyclerview.EX_ChatListView>
 
 </RelativeLayout>

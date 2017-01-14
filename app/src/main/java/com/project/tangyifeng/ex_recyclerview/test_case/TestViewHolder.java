@@ -47,6 +47,7 @@ public class TestViewHolder extends EX_ViewHolder<Integer> {
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                floatLine();
                 Log.d(TAG, "Click one!");
             }
         });
@@ -54,6 +55,7 @@ public class TestViewHolder extends EX_ViewHolder<Integer> {
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                removeLine();
                 Log.d(TAG, "Click two!");
             }
         });

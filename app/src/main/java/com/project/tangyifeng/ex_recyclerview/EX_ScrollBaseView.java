@@ -55,7 +55,6 @@ public class EX_ScrollBaseView extends RelativeLayout {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
                 intercept = !(isScrolled && event.getX() >= getWidth() - viewBelow.getWidth());
-                Log.d(TAG, "" + intercept);
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
@@ -81,8 +80,10 @@ public class EX_ScrollBaseView extends RelativeLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "Touched!");
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN: {
+                Log.d(TAG, "ACTION_DOWN");
                 if(isScrolled) {
                     if(event.getX() < getWidth() - viewBelow.getWidth()) {
                         startAnimation(lastDelta, 0, 100);
@@ -93,6 +94,7 @@ public class EX_ScrollBaseView extends RelativeLayout {
                 }
             }
             case MotionEvent.ACTION_MOVE: {
+                Log.d(TAG, "ACTION_MOVE");
                 float curX = event.getX();
                 float preDelta = lastDelta, afterDelta = (lastDelta + curX - lastX);
                 if(-(lastDelta + curX - lastX) > viewBelow.getWidth()) {
@@ -114,7 +116,6 @@ public class EX_ScrollBaseView extends RelativeLayout {
                 startAnimation(preDelta, afterDelta, 10);
                 lastDelta = afterDelta;
                 lastX = curX;
-                Log.d(TAG, " " + lastDelta);
                 return true;
             }
             case MotionEvent.ACTION_CANCEL:
@@ -134,7 +135,6 @@ public class EX_ScrollBaseView extends RelativeLayout {
                     lastDelta = 0;
                     isScrolled = false;
                 }
-                return true;
             }
         }
         return super.onTouchEvent(event);

@@ -21,6 +21,7 @@ public abstract class EX_ViewHolder<T> extends RecyclerView.ViewHolder {
 
     private View viewAbove;
     private View viewBelow;
+    private EX_Adapter<T> adapter;
 
     public EX_ViewHolder(View itemView) {
         super(itemView);
@@ -42,8 +43,20 @@ public abstract class EX_ViewHolder<T> extends RecyclerView.ViewHolder {
     public View getAboveView(){
         return viewAbove;
     }
-
     public View getBelowView(){
         return viewBelow;
     }
+
+    public void setAdapter(EX_Adapter<T> adapter){
+        this.adapter = adapter;
+    }
+
+    public void removeLine(){
+        adapter.deleteData(getAdapterPosition());
+    }
+
+    public void floatLine(){
+        adapter.floatData(getAdapterPosition());
+    }
+
 }

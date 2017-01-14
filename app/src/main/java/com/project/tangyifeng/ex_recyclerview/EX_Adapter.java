@@ -18,6 +18,7 @@ public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T
 
     @Override
     public void onBindViewHolder(EX_ViewHolder<T> holder, int position) {
+        holder.setAdapter(this);
         holder.bindData(dataList.get(position));
         holder.bindButtonBelow();
     }
@@ -30,15 +31,27 @@ public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T
     public void addData(List<T> data) {
         if(dataList == null) {
             setData(data);
+        } else {
+            int pos = dataList.size();
+            dataList.addAll(data);
+            notifyItemInserted(pos);
         }
-        int pos = dataList.size();
-        dataList.addAll(data);
-        notifyItemInserted(pos);
     }
 
     public void setData(List<T> data) {
         dataList = data;
         notifyDataSetChanged();
+    }
+
+    public void deleteData(int pos){
+        dataList.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
+    public void floatData(int pos){
+        T temp = dataList.remove(pos);
+        dataList.add(0, temp);
+        notifyItemMoved(pos, 0);
     }
 
     public List<T> getDataList(){
