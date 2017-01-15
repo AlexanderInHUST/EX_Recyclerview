@@ -103,11 +103,13 @@ public class EX_ChatListView<T> extends RelativeLayout {
             //Log.d(TAG, "1:" + curY + " " + lastY);
             switch (event.getAction()) {
                 case MotionEvent.ACTION_MOVE: {
-                        float start = lastDelta, end = lastDelta + curY - lastY;
-                        startAnimation(start, end, 10, 0);
-                        lastDelta = lastDelta + curY - lastY;
-                        lastY = curY;
-                        return true;
+                    float start = lastDelta, end = lastDelta + curY - lastY;
+                    if(end < 0)
+                        end = 0;
+                    startAnimation(start, end, 10, 0);
+                    lastDelta = end;
+                    lastY = curY;
+                    return true;
                 }
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP: {

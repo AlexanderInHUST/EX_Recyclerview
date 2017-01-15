@@ -69,4 +69,6 @@ public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T
         return dataList;
     }
 
+
+
 }
