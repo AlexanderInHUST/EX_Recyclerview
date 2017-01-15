@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.project.tangyifeng.ex_recyclerview.test_case.TestAdapter;
 
@@ -37,8 +38,27 @@ public class MainActivity extends AppCompatActivity {
     private void initialView(){
         recyclerView.setAdapter(adapter);
         recyclerView.setBackgroundImageByDrawable(null);
-        recyclerView.setCanFlash(true, R.layout.view_background_layout);
-        for(int i = 0; i < 3; i++)
-            adapter.addData(new ArrayList<Integer>(Arrays.asList(new Integer[]{1, 2, 3})));
+        recyclerView.setCanFlash(true, R.layout.view_background_layout, 200f, 1000);
+        recyclerView.setOnFlashListener(new EX_ChatListView.OnFlashListener() {
+            @Override
+            public boolean flash() {
+                return (Math.random() * 100 > 50);
+            }
+
+            @Override
+            public void flashSuccessfully() {
+                Toast.makeText(MainActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void flashUnsuccessfully() {
+                Toast.makeText(MainActivity.this, "Failure!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        testArray = new ArrayList<>();
+        for(int i = 0; i < 20; i++) {
+            testArray.add(i);
+        }
+        adapter.addData(testArray);
     }
 }

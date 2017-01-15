@@ -14,6 +14,8 @@ import java.util.List;
 
 public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T>> {
 
+    private static final String TAG = "EX_Adapter";
+
     private List<T> dataList;
 
     @Override
@@ -46,6 +48,7 @@ public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T
     public void deleteData(int pos){
         dataList.remove(pos);
         notifyItemRemoved(pos);
+
     }
 
     public void floatData(int pos){
