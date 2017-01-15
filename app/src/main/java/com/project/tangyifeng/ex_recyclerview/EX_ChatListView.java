@@ -70,26 +70,28 @@ public class EX_ChatListView<T> extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        float curY = event.getY();
-        float curX = event.getX();
-        //Log.d(TAG, "Offset is " + recyclerView.computeVerticalScrollOffset());
-        if(recyclerView.computeVerticalScrollOffset() == 0) {
-            if (lastYIntercept != -1 && curY - lastYIntercept > slop && lastXIntercept != -1 && Math.abs(curX - lastXIntercept) < slop) {
-                //Log.d(TAG, "Intercept!" + " " + lastXIntercept + " " + lastYIntercept);
-                if (lastY == -1)
-                    lastY = curY;
-                return true;
-            } else if ((lastYIntercept != 1 && lastXIntercept != 1) || (lastYIntercept - curY > slop && Math.abs(curX - lastXIntercept) < slop)) {
-                //Log.d(TAG, "Write down position!");
-                lastYIntercept = curY;
-                lastXIntercept = curX;
+        if(canFlash) {
+            float curY = event.getY();
+            float curX = event.getX();
+            //Log.d(TAG, "Offset is " + recyclerView.computeVerticalScrollOffset());
+            if (recyclerView.computeVerticalScrollOffset() == 0) {
+                if (lastYIntercept != -1 && curY - lastYIntercept > slop && lastXIntercept != -1 && Math.abs(curX - lastXIntercept) < slop) {
+                    //Log.d(TAG, "Intercept!" + " " + lastXIntercept + " " + lastYIntercept);
+                    if (lastY == -1)
+                        lastY = curY;
+                    return true;
+                } else if ((lastYIntercept != 1 && lastXIntercept != 1) || (lastYIntercept - curY > slop && Math.abs(curX - lastXIntercept) < slop)) {
+                    //Log.d(TAG, "Write down position!");
+                    lastYIntercept = curY;
+                    lastXIntercept = curX;
+                }
             }
-        }
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            lastXIntercept = -1;
-            lastYIntercept = -1;
-            lastY = -1;
-            //Log.d(TAG, "Refresh!");
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                lastXIntercept = -1;
+                lastYIntercept = -1;
+                lastY = -1;
+                //Log.d(TAG, "Refresh!");
+            }
         }
         return super.onInterceptTouchEvent(event);
     }
