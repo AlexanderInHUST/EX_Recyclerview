@@ -40,6 +40,15 @@ public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T
         }
     }
 
+    @Override
+    public void onViewDetachedFromWindow(EX_ViewHolder holder) {
+        EX_ScrollBaseView baseView = (EX_ScrollBaseView) holder.itemView;
+        baseView.setLastDelta(0);
+        baseView.setLastX(0);
+        baseView.setScrolled(false);
+        baseView.getViewAbove().setTranslationX(0);
+    }
+
     public void setData(List<T> data) {
         dataList = data;
         notifyDataSetChanged();
@@ -48,7 +57,6 @@ public abstract class EX_Adapter<T> extends RecyclerView.Adapter<EX_ViewHolder<T
     public void deleteData(int pos){
         dataList.remove(pos);
         notifyItemRemoved(pos);
-
     }
 
     public void floatData(int pos){

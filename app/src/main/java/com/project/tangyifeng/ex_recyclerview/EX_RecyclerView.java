@@ -42,6 +42,7 @@ public class EX_RecyclerView extends RecyclerView {
     }
 
     private void initialRecyclerView(){
+
         setLayoutManager(new LinearLayoutManager(getContext()){
             @Override
             public boolean canScrollHorizontally(){

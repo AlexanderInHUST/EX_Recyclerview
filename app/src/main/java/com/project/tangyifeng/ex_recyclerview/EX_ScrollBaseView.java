@@ -26,7 +26,7 @@ public class EX_ScrollBaseView extends RelativeLayout {
 
     private static final String TAG = "EX_ScrollBaseView";
 
-    private float lastX;
+    private float lastX = 0;
     private float lastDelta = 0;
     private float slop;
     private View viewAbove;
@@ -80,10 +80,10 @@ public class EX_ScrollBaseView extends RelativeLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "Touched!");
+        //Log.d(TAG, "Touched!");
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN: {
-                Log.d(TAG, "ACTION_DOWN");
+                //Log.d(TAG, "ACTION_DOWN");
                 if(isScrolled) {
                     if(event.getX() < getWidth() - viewBelow.getWidth()) {
                         startAnimation(lastDelta, 0, 100);
@@ -94,12 +94,13 @@ public class EX_ScrollBaseView extends RelativeLayout {
                 }
             }
             case MotionEvent.ACTION_MOVE: {
-                Log.d(TAG, "ACTION_MOVE");
+                //Log.d(TAG, "ACTION_MOVE");
                 float curX = event.getX();
                 float preDelta = lastDelta, afterDelta = (lastDelta + curX - lastX);
                 if(-(lastDelta + curX - lastX) > viewBelow.getWidth()) {
                     afterDelta = -viewBelow.getWidth();
                     isScrolled = true;
+                    Log.d(TAG, "Scroll!");
                 }
                 if(lastDelta + curX - lastX > 0) {
                     afterDelta = 0;
@@ -108,6 +109,7 @@ public class EX_ScrollBaseView extends RelativeLayout {
                 if(-lastDelta > viewBelow.getWidth()) {
                     preDelta = -viewBelow.getWidth();
                     isScrolled = true;
+                    Log.d(TAG, "Scroll!");
                 }
                 if(lastDelta > 0) {
                     preDelta = 0;
@@ -125,6 +127,7 @@ public class EX_ScrollBaseView extends RelativeLayout {
                         startAnimation(lastDelta, -viewBelow.getWidth(), 200);
                         lastDelta = -viewBelow.getWidth();
                         isScrolled = true;
+                        Log.d(TAG, "Scroll!");
                     } else {
                         startAnimation(lastDelta, 0, 200);
                         lastDelta = 0;
@@ -156,4 +159,15 @@ public class EX_ScrollBaseView extends RelativeLayout {
         return viewBelow;
     }
 
+    public void setLastX(float lastX) {
+        this.lastX = lastX;
+    }
+
+    public void setLastDelta(float lastDelta) {
+        this.lastDelta = lastDelta;
+    }
+
+    public void setScrolled(boolean scrolled) {
+        isScrolled = scrolled;
+    }
 }

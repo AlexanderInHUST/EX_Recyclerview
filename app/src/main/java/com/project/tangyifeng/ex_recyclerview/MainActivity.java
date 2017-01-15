@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         testArray = new ArrayList<>();
-        for(int i = 0; i < 20; i++) {
+        for(int i = 0; i < 30; i++) {
             testArray.add(i);
         }
         adapter.addData(testArray);

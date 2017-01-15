@@ -72,15 +72,15 @@ public class EX_ChatListView<T> extends RelativeLayout {
     public boolean onInterceptTouchEvent(MotionEvent event) {
         float curY = event.getY();
         float curX = event.getX();
-        Log.d(TAG, "Offset is " + recyclerView.computeVerticalScrollOffset());
+        //Log.d(TAG, "Offset is " + recyclerView.computeVerticalScrollOffset());
         if(recyclerView.computeVerticalScrollOffset() == 0) {
             if (lastYIntercept != -1 && curY - lastYIntercept > slop && lastXIntercept != -1 && Math.abs(curX - lastXIntercept) < slop) {
-                Log.d(TAG, "Intercept!" + " " + lastXIntercept + " " + lastYIntercept);
+                //Log.d(TAG, "Intercept!" + " " + lastXIntercept + " " + lastYIntercept);
                 if (lastY == -1)
                     lastY = curY;
                 return true;
             } else if ((lastYIntercept != 1 && lastXIntercept != 1) || (lastYIntercept - curY > slop && Math.abs(curX - lastXIntercept) < slop)) {
-                Log.d(TAG, "Write down position!");
+                //Log.d(TAG, "Write down position!");
                 lastYIntercept = curY;
                 lastXIntercept = curX;
             }
@@ -89,7 +89,7 @@ public class EX_ChatListView<T> extends RelativeLayout {
             lastXIntercept = -1;
             lastYIntercept = -1;
             lastY = -1;
-            Log.d(TAG, "Refresh!");
+            //Log.d(TAG, "Refresh!");
         }
         return super.onInterceptTouchEvent(event);
     }
@@ -98,7 +98,7 @@ public class EX_ChatListView<T> extends RelativeLayout {
     public boolean onTouchEvent(MotionEvent event){
         float curY = event.getY();
         if(canFlash && recyclerView.computeVerticalScrollOffset() == 0) {
-            Log.d(TAG, "1:" + curY + " " + lastY);
+            //Log.d(TAG, "1:" + curY + " " + lastY);
             switch (event.getAction()) {
                 case MotionEvent.ACTION_MOVE: {
                         float start = lastDelta, end = lastDelta + curY - lastY;
@@ -134,7 +134,7 @@ public class EX_ChatListView<T> extends RelativeLayout {
                     lastXIntercept = -1;
                     lastYIntercept = -1;
                     lastY = -1;
-                    Log.d(TAG, "Refresh!");
+                    //Log.d(TAG, "Refresh!");
                     break;
                 }
             }
