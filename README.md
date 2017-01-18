@@ -39,25 +39,35 @@ To return an Object that is the instance of the Class extending EX_ViewHolder.
     
 ### Initialize EX_ChatListView
 
-#### setAdapter(EX_Adapter adapter)
+``` java
+setAdapter(EX_Adapter adapter)
+```
 
 Set an adapter to your view.
-	
-#### setBackgroudImageByDrawable(@Nullable Drawable d)
+
+``` java
+setBackgroudImageByDrawable(@Nullable Drawable d)
+```
 
 Set the background of the list view. (Blank but white color if input null)
 
-#### setCanFlash(Boolean canFlash, @Nullable Integer layoutId, @Nullable Integer layoutHeight, @Nullable Integer waitTime)
+``` java
+setCanFlash(Boolean canFlash, @Nullable Integer layoutId, @Nullable Integer layoutHeight, @Nullable Integer waitTime)
+```
 
-	Set whether it can slide down to flash.
-	
-#### setOnFlashListener(OnFlashListener listener)
+Set whether it can slide down to flash.
 
-	Set the listener.
-	
-#### addData(List<T> list) or setData(List<T> list) or deleteData(int pos)
+``` java
+setOnFlashListener(OnFlashListener listener)
+```
 
-	These methods are in the Class EX_Adapter.  
+Set the listener.
+
+``` java
+addData(List<T> list) or setData(List<T> list) or deleteData(int pos)
+```
+
+These methods are in the Class EX_Adapter.  
 	
 ## Appreciation
 
